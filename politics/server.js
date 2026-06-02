@@ -443,7 +443,7 @@ app.post('/api/db/news/fetch', async (req, res) => {
           
           if (feed.lang === 'ta') {
             newArticle.title_ta = cleanRawTitle;
-            newArticle.content_ta = cleanDesc || "செய்தியின் முழு விவரம் தவெக தலைமை அலுவலக ஊடகப் பிரிவில் விரைவில் வெளியிடப்படும்.";
+            newArticle.content_ta = cleanDesc || "செய்தியின் முழு விவரம் TVK தலைமை அலுவலக ஊடகப் பிரிவில் விரைவில் வெளியிடப்படும்.";
             newArticle.title_en = cleanRawTitle; // Fallback
             newArticle.content_en = newArticle.content_ta; // Fallback
           } else {

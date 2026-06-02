@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       search_placeholder: "செய்திகளைத் தேடுக...",
       read_more: "மேலும் படிக்க",
       about_title: "தமிழகத்தின் முதன்மை மக்கள் தலைவர்",
-      about_badge: "தவெக தலைவர் & முதல்வர் அலுவலகம்",
+      about_badge: "TVK தலைவர் & முதல்வர் அலுவலகம்",
       about_intro: "தலைவர் தளபதி விஜய் அவர்களின் தலைமையில் மதச்சார்பற்ற சமூக நீதி, ஊழலற்ற வெளிப்படையான மற்றும் நேர்மையான மக்கள் அர்ப்பணிப்பு நிர்வாகம்.",
       about_minister_label: "கொள்கை முழக்கம்",
       highlight_1_title: "முதலமைச்சர் அலுவலகம் (CMO)",
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
       highlight_4_desc: "பொதுமக்கள் பிரச்சனைகளுக்கு டிஜிட்டல் முறைகள் மூலம் விரைவான தீர்வு காணுதல்.",
       gallery_title: "புகைப்பட கேலரி",
       videos_title: "காணொளிகள்",
-      projects_title: "தவெக மக்கள் திட்டங்கள்",
+      projects_title: "TVK மக்கள் திட்டங்கள்",
       projects_subtitle: "மாநிலத்தில் நடைபெறும் முக்கிய மக்கள் நலத் திட்டங்களின் விபரம்",
       proj_status_completed: "நிறைவடைந்தது",
       proj_status_ongoing: "தொடர்கிறது",
@@ -140,9 +140,9 @@ document.addEventListener("DOMContentLoaded", () => {
       form_error: "தயவுசெய்து அனைத்து விபரங்களையும் சரியாக நிரப்பவும்.",
       footer_about_desc: "தமிழக வெற்றி கழகத்தின் நிறுவனத் தலைவரும் மாண்புமிகு தமிழக முதலமைச்சருமான தளபதி விஜய் அவர்களின் அதிகாரப்பூர்வ மக்கள் தொடர்பு இணையதளம்.",
       footer_links_title: "இணைப்புகள்",
-      footer_contact_title: "தவெக தலைமை முகவரி",
+      footer_contact_title: "TVK தலைமை முகவரி",
       footer_newsletter_title: "இணைந்திருங்கள்",
-      footer_newsletter_desc: "தவெக அரசின் வளர்ச்சிப் பணிகள் மற்றும் கொள்கைகள் குறித்த விபரங்களை மின்னஞ்சலில் பெறுக.",
+      footer_newsletter_desc: "TVK அரசின் வளர்ச்சிப் பணிகள் மற்றும் கொள்கைகள் குறித்த விபரங்களை மின்னஞ்சலில் பெறுக.",
       footer_newsletter_btn: "பதிவு செய்",
       footer_newsletter_success: "பதிவு செய்யப்பட்டது!",
       footer_copyright: "அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை. தமிழக வெற்றி கழகம்.",
@@ -173,12 +173,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Hero & Sidebar News
     featuredImg: document.getElementById("featured-img"),
-    featuredCategory: document.getElementById("featured-category"),
+    featuredCategory: document.getElementById("featured-badge"),
     featuredTitle: document.getElementById("featured-title"),
-    featuredDesc: document.getElementById("featured-desc"),
     featuredDate: document.getElementById("featured-date"),
     featuredStoryCard: document.getElementById("featured-story-card"),
-    sidebarNewsList: document.getElementById("sidebar-news-list"),
+    heroMiddleCol: document.getElementById("hero-middle-col"),
+    heroRightCol: document.getElementById("hero-right-col"),
     
     // News Hub
     newsGrid: document.getElementById("news-grid"),
@@ -267,11 +267,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (elements.socialYt) elements.socialYt.href = siteConfig.youtube || "#";
     
     if (elements.headerAvatar) {
-      let logoSrc = siteConfig.leader_image_url || "images/tvklogo.png";
-      if (logoSrc.includes("tvk_logo.png")) {
-        logoSrc = "images/tvklogo.png";
-      }
-      elements.headerAvatar.src = logoSrc;
+      elements.headerAvatar.src = siteConfig.leader_image_url || "images/tvklogo.png";
     }
     if (siteConfig.mla_image_url) {
       const mlaProfileImg = document.getElementById("profile-mla-img");
@@ -320,39 +316,55 @@ document.addEventListener("DOMContentLoaded", () => {
     if (elements.featuredImg) elements.featuredImg.src = featured.image_url;
     if (elements.featuredCategory) elements.featuredCategory.textContent = currentLang === "en" ? featured.category : getCategoryTamil(featured.category);
     if (elements.featuredTitle) elements.featuredTitle.textContent = featured[`title_${currentLang}`];
-    if (elements.featuredDesc) elements.featuredDesc.textContent = featured[`content_${currentLang}`];
     
     const formattedDate = formatDateString(featured.date);
-    if (elements.featuredDate) elements.featuredDate.innerHTML = `<i class="far fa-calendar-alt"></i> ${formattedDate}`;
+    if (elements.featuredDate) elements.featuredDate.innerHTML = `Admin <i class="far fa-calendar-alt"></i> ${formattedDate} <i class="far fa-comment"></i> 0`;
 
     // Add click event to open featured story
     if (elements.featuredStoryCard) {
       elements.featuredStoryCard.onclick = () => openNewsModal(featured.id);
     }
 
-    // Sidebar small news updates rendering (other than the featured story)
-    const sidebarItems = allNews.filter(n => n.id !== featured.id).slice(0, 3);
-    if (elements.sidebarNewsList) {
-      elements.sidebarNewsList.innerHTML = "";
-      
-      if (sidebarItems.length === 0) {
-        elements.sidebarNewsList.innerHTML = `<p style="padding: 1rem; color: var(--text-muted); font-size: 0.85rem;">No other news available.</p>`;
-        return;
-      }
+    const otherNews = allNews.filter(n => n.id !== featured.id);
 
-      sidebarItems.forEach(item => {
+    // Column 2 (Middle stacked cards): next 2 news items
+    const middleItems = otherNews.slice(0, 2);
+    if (elements.heroMiddleCol) {
+      elements.heroMiddleCol.innerHTML = "";
+      middleItems.forEach(item => {
         const card = document.createElement("div");
-        card.className = "sidebar-card";
+        card.className = "middle-news-card";
         card.onclick = () => openNewsModal(item.id);
-        
+        const itemCategory = currentLang === "en" ? item.category : getCategoryTamil(item.category);
         card.innerHTML = `
-          <img class="sidebar-thumb" src="${item.image_url}" alt="News thumbnail" referrerpolicy="no-referrer">
-          <div class="sidebar-card-content">
-            <h5 class="sidebar-card-title">${item[`title_${currentLang}`]}</h5>
-            <span class="sidebar-card-date"><i class="far fa-calendar-alt"></i> ${formatDateString(item.date)}</span>
+          <div class="featured-img-wrap">
+            <img class="featured-img" src="${item.image_url}" alt="News thumbnail" referrerpolicy="no-referrer">
+          </div>
+          <div class="featured-overlay">
+            <span class="badge">${itemCategory}</span>
+            <h3 class="middle-card-title">${item[`title_${currentLang}`]}</h3>
+            <div class="featured-meta">
+              <span>Admin <i class="far fa-calendar-alt"></i> ${formatDateString(item.date)} <i class="far fa-comment"></i> 0</span>
+            </div>
           </div>
         `;
-        elements.sidebarNewsList.appendChild(card);
+        elements.heroMiddleCol.appendChild(card);
+      });
+    }
+
+    // Column 3 (Right text-only list): next 4 news items
+    const rightItems = otherNews.slice(2, 6);
+    if (elements.heroRightCol) {
+      elements.heroRightCol.innerHTML = "";
+      rightItems.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "text-news-item";
+        card.onclick = () => openNewsModal(item.id);
+        card.innerHTML = `
+          <h4 class="text-news-title">${item[`title_${currentLang}`]}</h4>
+          <p class="text-news-desc">${(item[`content_${currentLang}`] || "").substring(0, 120)}...</p>
+        `;
+        elements.heroRightCol.appendChild(card);
       });
     }
   };
@@ -440,21 +452,20 @@ document.addEventListener("DOMContentLoaded", () => {
     filteredNews.forEach(item => {
       const card = document.createElement("div");
       card.className = "news-card";
+      card.onclick = () => openNewsModal(item.id);
+      card.style.cursor = "pointer";
       
       card.innerHTML = `
         <div class="news-card-img-wrap">
           <img class="news-card-img" src="${item.image_url}" alt="News image" referrerpolicy="no-referrer">
-          <span class="badge badge-primary news-card-category">${currentLang === "en" ? item.category : getCategoryTamil(item.category)}</span>
         </div>
         <div class="news-card-body">
-          <span class="news-card-date"><i class="far fa-calendar-alt"></i> ${formatDateString(item.date)}</span>
+          <span class="news-card-category-link">${currentLang === "en" ? item.category : getCategoryTamil(item.category)}</span>
           <h4 class="news-card-title">${item[`title_${currentLang}`]}</h4>
-          <p class="news-card-desc">${item[`content_${currentLang}`]}</p>
-        </div>
-        <div class="news-card-footer">
-          <button class="read-more-btn" onclick="openNewsModal('${item.id}')">
-            ${t.read_more} <i class="fas fa-arrow-right" style="font-size: 0.75rem;"></i>
-          </button>
+          <p class="news-card-desc">${(item[`content_${currentLang}`] || "").substring(0, 120)}...</p>
+          <div class="news-card-meta">
+            <span>Admin <i class="far fa-calendar-alt"></i> ${formatDateString(item.date)} <i class="far fa-comment"></i> 0</span>
+          </div>
         </div>
       `;
       elements.newsGrid.appendChild(card);

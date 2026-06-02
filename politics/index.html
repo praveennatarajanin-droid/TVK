@@ -35,7 +35,7 @@
   <div class="ticker-wrap">
     <div class="ticker-title" data-i18n="breaking_news">முக்கிய செய்திகள்</div>
     <div class="ticker-marquee">
-      <span id="marquee-text">தவெக தலைவர் தளபதி விஜய் தமிழக முதலமைச்சராக பொறுப்பேற்பு!</span>
+      <span id="marquee-text">TVK தலைவர் தளபதி விஜய் தமிழக முதலமைச்சராக பொறுப்பேற்பு!</span>
     </div>
   </div>
 
@@ -43,10 +43,9 @@
   <header class="main-header">
     <div class="container header-content">
       <div class="brand-area">
-        <!-- Gorgeous Real TVK Party Logo Image -->
-        <img class="tvk-logo" src="images/tvklogo.png" alt="Tamilaga Vettri Kazhagam Logo">
+        <img class="tvk-logo" src="images/Arun.jpeg" alt="Arun MLA">
         <div class="brand-text">
-          <h1 id="brand-title">தமிழக வெற்றி கழகம் (தவெக)</h1>
+          <h1 id="brand-title">தமிழக வெற்றி கழகம் (TVK)</h1>
           <p id="brand-sub">மாநிலத் தலைமை இணையதளம் & முதலமைச்சர் அலுவலகம்</p>
         </div>
       </div>
@@ -62,7 +61,7 @@
         </div>
         <!-- MLA Avatar Profile Badge -->
         <div class="mla-badge">
-          <img class="mla-avatar" id="header-avatar" src="images/tvklogo.png" alt="TVK Logo" referrerpolicy="no-referrer">
+          <img class="mla-avatar" id="header-avatar" src="images/tvklogo.png" alt="Thalapathy Vijay" referrerpolicy="no-referrer">
           <div class="mla-info">
             <h4 id="header-mla-name">தளபதி விஜய்</h4>
             <p id="header-mla-title">தமிழக முதலமைச்சர்</p>
@@ -74,55 +73,63 @@
 
   <!-- Navigation Sticky Menu -->
   <nav class="navbar">
-    <div class="container nav-links">
-      <a href="#home" class="active" data-i18n="nav_home">முகப்பு</a>
-      <a href="#about" data-i18n="nav_about">தலைவர் பற்றி</a>
-      <a href="#news" data-i18n="nav_news">செய்திகள்</a>
-      <a href="#projects" data-i18n="nav_projects">மக்கள் நலத்திட்டங்கள்</a>
-      <a href="#grievance" data-i18n="nav_grievance">முதல்வர் மனு பிரிவு</a>
-      <a href="admin.html" class="admin-nav-btn" target="_blank">
-        <i class="fas fa-lock"></i> <span data-i18n="nav_admin">நிர்வாக பக்கம்</span>
-      </a>
+    <div class="container nav-container" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+      <div class="nav-links" style="display: flex; align-items: center; gap: 0.25rem;">
+        <a href="#home" class="active">HOME</a>
+        <span class="nav-separator">|</span>
+        <a href="#news">மதுராந்தகம் <i class="fas fa-chevron-down" style="font-size: 0.65rem; margin-left: 2px;"></i></a>
+        <span class="nav-separator">|</span>
+        <a href="#news">கோயில் <i class="fas fa-chevron-down" style="font-size: 0.65rem; margin-left: 2px;"></i></a>
+        <span class="nav-separator">|</span>
+        <a href="#news">தேர்தல் 2026 <i class="fas fa-chevron-down" style="font-size: 0.65rem; margin-left: 2px;"></i></a>
+        <span class="nav-separator">|</span>
+        <a href="#press-releases">தமிழ்நாடு <i class="fas fa-chevron-down" style="font-size: 0.65rem; margin-left: 2px;"></i></a>
+        <span class="nav-separator">|</span>
+        <a href="#projects">நலத்திட்டம் <i class="fas fa-chevron-down" style="font-size: 0.65rem; margin-left: 2px;"></i></a>
+        <span class="nav-separator">|</span>
+        <a href="#news">ஆர்ப்பாட்டம் <i class="fas fa-chevron-down" style="font-size: 0.65rem; margin-left: 2px;"></i></a>
+        <span class="nav-separator">|</span>
+        <a href="#videos">VIDEO <i class="fas fa-chevron-down" style="font-size: 0.65rem; margin-left: 2px;"></i></a>
+        <span class="nav-separator">|</span>
+        <a href="#home">MORE <i class="fas fa-chevron-down" style="font-size: 0.65rem; margin-left: 2px;"></i></a>
+      </div>
+      
+      <div class="nav-search-wrap" style="display: flex; align-items: center; gap: 1rem;">
+        <a href="admin.html" class="admin-nav-btn" target="_blank" style="background-color: var(--secondary); color: var(--dark-bg); font-weight: 700; border-radius: 4px; padding: 0.4rem 0.8rem; font-size: 0.8rem; display: flex; align-items: center; gap: 0.25rem; text-transform: uppercase;">
+          <i class="fas fa-lock" style="font-size: 0.75rem;"></i> Admin
+        </a>
+        <div class="search-icon-circle" style="background-color: #333; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; transition: background-color 0.2s ease;">
+          <i class="fas fa-search" style="font-size: 0.8rem;"></i>
+        </div>
+      </div>
     </div>
   </nav>
 
   <!-- 3. HERO GRID SECTION (FEATURED NEWS + SIDEBAR) -->
   <section class="hero-news" id="home">
     <div class="container hero-grid">
-      <!-- Big Left Featured Card -->
+      <!-- Column 1: Big Left Featured Card -->
       <div class="featured-story" id="featured-story-card">
         <div class="featured-img-wrap">
-          <img class="featured-img" id="featured-img" src="images/lake.jpg" alt="Featured story" referrerpolicy="no-referrer">
+          <img class="featured-img" id="featured-img" src="" alt="Featured story" referrerpolicy="no-referrer">
         </div>
         <div class="featured-overlay">
-          <span class="badge badge-secondary" data-i18n="featured_tag">சிறப்பு செய்தி</span>
+          <span class="badge" id="featured-badge">செய்தி</span>
           <h2 class="featured-title" id="featured-title">Loading featured news...</h2>
-          <p class="featured-summary" id="featured-desc">Please wait while the website data synchronizes.</p>
           <div class="featured-meta">
-            <span id="featured-date"><i class="far fa-calendar-alt"></i> Loading date...</span>
+            <span id="featured-date">Admin <i class="far fa-calendar-alt"></i> Loading date... <i class="far fa-comment"></i> 0</span>
           </div>
         </div>
       </div>
 
-      <!-- Small Vertical News Sidebar -->
-      <div class="sidebar-container">
-        <!-- Social Follow Widget Grid -->
-        <div class="social-follow-grid">
-          <a class="follow-btn follow-facebook" id="follow-fb" href="#" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
-          <a class="follow-btn follow-twitter" id="follow-tw" href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
-          <a class="follow-btn follow-instagram" id="follow-ig" href="#" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-          <a class="follow-btn follow-youtube" id="follow-yt" href="#" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-        </div>
-        
-        <div class="sidebar-news" style="max-height: 380px;">
-          <div class="sidebar-title">
-            <span data-i18n="sidebar_title">சமீபத்திய செய்திகள்</span>
-            <i class="fas fa-bolt" style="color: var(--secondary);"></i>
-          </div>
-          <div class="sidebar-news-list" id="sidebar-news-list">
-            <!-- Populated dynamically via app.js -->
-          </div>
-        </div>
+      <!-- Column 2: Middle Stacked News Cards -->
+      <div class="hero-middle-col" id="hero-middle-col">
+        <!-- Dynamic rendering via app.js -->
+      </div>
+
+      <!-- Column 3: Right Text-Only News List -->
+      <div class="hero-right-col" id="hero-right-col">
+        <!-- Dynamic rendering via app.js -->
       </div>
     </div>
   </section>
@@ -215,7 +222,7 @@
       <div class="profile-media">
         <div class="profile-img-backdrop"></div>
         <div class="profile-img-frame">
-          <img class="profile-image" id="profile-mla-img" src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Vijay_at_the_Nadigar_Sangam_Protest.jpg" alt="Thalapathy Vijay Profile" referrerpolicy="no-referrer">
+          <img class="profile-image" id="profile-mla-img" src="images/Arun.jpeg" alt="Arun Profile" referrerpolicy="no-referrer">
         </div>
       </div>
       <div class="profile-content">
@@ -226,7 +233,7 @@
         </div>
         <div class="profile-bio">
           <p>தமிழக வெற்றி கழகத்தின் நிறுவனத் தலைவரும் மாண்புமிகு தமிழக முதலமைச்சருமான <strong>தளபதி விஜய்</strong> அவர்கள், தமிழக மக்களின் பேராதரவோடு 2026 சட்டமன்றத் தேர்தலில் மாபெரும் வெற்றி பெற்று தமிழகத்தின் முதலமைச்சராகப் பொறுப்பேற்றுள்ளார்.</p>
-          <p>மதச்சார்பற்ற சமூக நீதிக் கொள்கைகளை முன்னிறுத்தி, ஊழலற்ற, வெளிப்படையான மற்றும் நேர்மையான நிர்வாகத்தை தமிழக மக்களுக்கு வழங்குவதே தவெக அரசின் முக்கிய இலக்காகும். கல்வி, சுகாதாரம், மற்றும் இளைஞர்களுக்கான ஸ்மார்ட் வேலைவாய்ப்புத் திட்டங்களில் தவெக அரசு தனி கவனம் செலுத்தி வருகிறது.</p>
+          <p>மதச்சார்பற்ற சமூக நீதிக் கொள்கைகளை முன்னிறுத்தி, ஊழலற்ற, வெளிப்படையான மற்றும் நேர்மையான நிர்வாகத்தை தமிழக மக்களுக்கு வழங்குவதே TVK அரசின் முக்கிய இலக்காகும். கல்வி, சுகாதாரம், மற்றும் இளைஞர்களுக்கான ஸ்மார்ட் வேலைவாய்ப்புத் திட்டங்களில் TVK அரசு தனி கவனம் செலுத்தி வருகிறது.</p>
         </div>
         <div class="key-highlights-grid">
           <div class="highlight-card">
@@ -388,7 +395,7 @@
           <h3 data-i18n="party_name_ta">தமிழக வெற்றி கழகம்</h3>
         </div>
         <p class="footer-about-text" id="footer-desc">
-          தாம்பரம் தொகுதி சட்டமன்ற உறுப்பினரும் மாண்புமிகு மனிதவள மேலாண்மைத் துறை அமைச்சருமான த. சரத்குமார் அவர்களின் அதிகாரப்பூர்வ மக்கள் தொடர்பு இணையதளம்.
+          தாம்பரம் தொகுதி தவெக (TVK) மக்கள் பிரதிநிதி அருண் அவர்களின் அதிகாரப்பூர்வ மக்கள் தொடர்பு இணையதளம்.
         </p>
       </div>
       
@@ -397,9 +404,9 @@
         <h4 data-i18n="footer_links_title">இணைப்புகள்</h4>
         <ul class="footer-links">
           <li><a href="#home"><i class="fas fa-chevron-right" style="font-size: 0.65rem;"></i> <span data-i18n="nav_home">முகப்பு</span></a></li>
-          <li><a href="#about"><i class="fas fa-chevron-right" style="font-size: 0.65rem;"></i> <span data-i18n="nav_about">அமைச்சர் பற்றி</span></a></li>
+          <li><a href="#about"><i class="fas fa-chevron-right" style="font-size: 0.65rem;"></i> <span data-i18n="nav_about">தலைவர் பற்றி</span></a></li>
           <li><a href="#news"><i class="fas fa-chevron-right" style="font-size: 0.65rem;"></i> <span data-i18n="nav_news">செய்திகள்</span></a></li>
-          <li><a href="#projects"><i class="fas fa-chevron-right" style="font-size: 0.65rem;"></i> <span data-i18n="nav_projects">தாம்பரம் திட்டங்கள்</span></a></li>
+          <li><a href="#projects"><i class="fas fa-chevron-right" style="font-size: 0.65rem;"></i> <span data-i18n="nav_projects">மக்கள் நலத்திட்டங்கள்</span></a></li>
         </ul>
       </div>
       

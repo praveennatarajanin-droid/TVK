@@ -1,7 +1,7 @@
 {
   "name": "tvk-tambaram-mla-website",
   "version": "1.0.0",
-  "description": "Dynamic TVK Tambaram MLA D. Sarathkumar Website & Admin Portal",
+  "description": "Dynamic TVK Tambaram MLA Arun Website & Admin Portal",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
