@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TVK Tambaram MLA - Administrative Control Dashboard</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Dashboard Styling System -->
+  <style>
+    /* Sleek administrative control dashboard styles */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+    
+    :root {
+      --primary: #7A0C1A;
+      --primary-light: #9C1D2C;
+      --primary-dark: #580812;
+      --secondary: #F1C40F;
+      --dark-bg: #120204;
+      --light-bg: #F4F6F7;
+      --card-bg: #FFFFFF;
+      --text-dark: #2C3E50;
+      --text-muted: #7F8C8D;
+      --border-color: #E2E8F0;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08);
+      --font-family: 'Inter', sans-serif;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: var(--font-family);
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* ---------------- SIDEBAR NAVIGATION ---------------- */
+    .sidebar {
+      width: 280px;
+      background-color: var(--dark-bg);
+      color: #FFF;
+      display: flex;
+      flex-direction: column;
+      border-right: 3px solid var(--secondary);
+      flex-shrink: 0;
+    }
+    
+    .sidebar-header {
+      padding: 2rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .sidebar-header i {
+      color: var(--secondary);
+      font-size: 1.5rem;
+    }
+    
+    .sidebar-header h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+    
+    .sidebar-menu {
+      padding: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      flex-grow: 1;
+    }
+    
+    .sidebar-btn {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      background: transparent;
+      border: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    
+    .sidebar-btn:hover {
+      color: #FFF;
+      background-color: rgba(255,255,255,0.04);
+    }
+    
+    .sidebar-btn.active {
+      color: var(--secondary);
+      background-color: rgba(122, 12, 26, 0.2);
+    }
+    
+    .sidebar-btn.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 4px;
+      background-color: var(--secondary);
+    }
+    
+    .sidebar-btn-badge {
+      margin-left: auto;
+      background-color: var(--primary);
+      color: #FFF;
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      border: 1px solid var(--secondary);
+    }
+    
+    .view-site-btn {
+      margin: 1.5rem;
+      background-color: var(--secondary);
+      color: var(--dark-bg);
+      text-decoration: none;
+      padding: 0.85rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      text-align: center;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .view-site-btn:hover {
+      background-color: #FFF;
+      transform: translateY(-2px);
+    }
+    
+    /* ---------------- MAIN DASHBOARD WINDOW ---------------- */
+    .main-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    
+    .main-navbar {
+      background-color: #FFF;
+      padding: 1.25rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .main-navbar-title h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    
+    .main-navbar-title p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+      font-weight: 500;
+    }
+    
+    .mla-avatar-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .mla-avatar-badge img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary);
+    }
+    
+    .mla-avatar-info h5 {
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    
+    .mla-avatar-info p {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    .dashboard-view {
+      padding: 2.5rem;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    
+    /* Stat cards widget board */
+    .stat-widget-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .stat-widget-card {
+      background-color: #FFF;
+      border-radius: 10px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+    
+    .stat-widget-info h4 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    
+    .stat-widget-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-top: 0.15rem;
+    }
+    
+    .stat-widget-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      background-color: #FDF2F4;
+      color: var(--primary);
+      border: 1px solid rgba(122, 12, 26, 0.1);
+    }
+    
+    /* Admin Alerts */
+    .custom-alert {
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .custom-alert-success {
+      background-color: #E8F8F0;
+      color: #27AE60;
+      border: 1px solid #2ECC71;
+    }
+    
+    .custom-alert-error {
+      background-color: #FDF2F4;
+      color: var(--primary);
+      border: 1px solid var(--primary-light);
+    }
+    
+    /* ---------------- DYNAMIC PANELS VIEW STATE ---------------- */
+    .admin-panel {
+      display: none;
+    }
+    
+    .admin-panel.active {
+      display: block;
+      animation: viewFadeIn 0.25s ease;
+    }
+    
+    @keyframes viewFadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .panel-header {
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .panel-header h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Admin Forms Card grid */
+    .admin-grid-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1.8fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    
+    .admin-grid-layout-full {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .card-block {
+      background-color: #FFF;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+    }
+    
+    .card-block-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    /* Standard Admin Form Fields */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 0.7rem 0.85rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 0.85rem;
+      transition: border-color 0.2s ease;
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    
+    .form-input[disabled] {
+      background-color: #F8FAFC;
+      color: #94A3B8;
+      cursor: not-allowed;
+    }
+    
+    .form-checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+    }
+    
+    .form-checkbox-group input {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+    
+    .form-file-uploader {
+      position: relative;
+      border: 2px dashed var(--border-color);
+      border-radius: 6px;
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      background-color: #FAFBFB;
+      transition: all 0.2s ease;
+    }
+    
+    .form-file-uploader:hover {
+      border-color: var(--primary);
+      background-color: #FFF;
+    }
+    
+    .form-file-uploader input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+    
+    .form-file-uploader i {
+      font-size: 2rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    
+    .form-file-uploader span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    
+    .image-preview-box {
+      margin-top: 1rem;
+      width: 100%;
+      height: 180px;
+      border-radius: 6px;
+      overflow: hidden;
+      display: none;
+      border: 1px solid var(--border-color);
+    }
+    
+    .image-preview-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* Standard Admin Buttons */
+    .btn {
+      padding: 0.75rem 1.25rem;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: #FFF;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-light);
+    }
+    
+    .btn-secondary {
+      background-color: #FFF;
+      color: var(--text-dark);
+      border: 1px solid var(--border-color);
+    }
+    
+    .btn-secondary:hover {
+      background-color: #F8FAFC;
+    }
+    
+    .btn-danger {
+      background-color: #E74C3C;
+      color: #FFF;
+    }
+    
+    .btn-danger:hover {
+      background-color: #C0392B;
+    }
+    
+    .btn-success {
+      background-color: #2ECC71;
+      color: #FFF;
+    }
+    
+    .btn-success:hover {
+      background-color: #27AE60;
+    }
+    
+    .btn-full {
+      width: 100%;
+    }
+    
+    /* ---------------- DATA TABLES IN THE PANELS ---------------- */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+    }
+    
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+    
+    .admin-table th {
+      background-color: #F8FAFC;
+      padding: 0.75rem 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      border-bottom: 2px solid var(--border-color);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .admin-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+    
+    .admin-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .table-thumb {
+      width: 55px;
+      height: 40px;
+      border-radius: 4px;
+      object-fit: cover;
+      border: 1px solid var(--border-color);
+    }
+    
+    .status-pill {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+    }
+    
+    .action-btn-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .action-btn {
+      padding: 0.4rem 0.65rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    
+    .action-btn-edit {
+      background-color: #FAF0E6;
+      color: var(--primary);
+    }
+    
+    .action-btn-edit:hover {
+      background-color: var(--primary);
+      color: #FFF;
+    }
+    
+    .action-btn-delete {
+      background-color: #FDF2F4;
+      color: #E74C3C;
+    }
+    
+    .action-btn-delete:hover {
+      background-color: #E74C3C;
+      color: #FFF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. LEFT SIDEBAR PANEL CONTROLLER -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <i class="fas fa-lock"></i>
+      <h2>TVK CM PORTAL<br><span style="color: var(--secondary); font-size: 0.75rem;">ADMIN PANEL</span></h2>
+    </div>
+    
+    <div class="sidebar-menu">
+      <button class="sidebar-btn active" data-panel="settings">
+        <i class="fas fa-sliders-h"></i> Configuration Settings
+      </button>
+      <button class="sidebar-btn" data-panel="news">
+        <i class="far fa-newspaper"></i> News Articles
+      </button>
+      <button class="sidebar-btn" data-panel="projects">
+        <i class="fas fa-tasks"></i> TVK Projects
+      </button>
+      <button class="sidebar-btn" data-panel="gallery">
+        <i class="far fa-image"></i> Photos & Videos
+      </button>
+      <button class="sidebar-btn" data-panel="grievances">
+        <i class="far fa-envelope-open"></i> Grievances Inbox
+        <span class="sidebar-btn-badge" id="stat-count-grievances">0</span>
+      </button>
+    </div>
+    
+    <!-- Link back to live home page for testing -->
+    <a href="index.html" class="view-site-btn">
+      <i class="fas fa-external-link-alt"></i> View Live Site
+    </a>
+  </aside>
+
+  <!-- 2. MAIN DASHBOARD CONTENT AREA -->
+  <main class="main-content">
+    
+    <!-- Top Nav Indicator Bar -->
+    <nav class="main-navbar">
+      <div class="main-navbar-title">
+        <h3>TVK CM Governance Dashboard</h3>
+        <p>Interactive Client-Side Persistence Database Controller</p>
+      </div>
+      <div class="mla-avatar-badge">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Vijay_at_the_Nadigar_Sangam_Protest.jpg" alt="CM Avatar" id="dashboard-mla-avatar">
+        <div class="mla-avatar-info">
+          <h5>Thalapathy Vijay</h5>
+          <p>TVK President / CM</p>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Primary View Dashboard Layout container -->
+    <div class="dashboard-view">
+      
+      <!-- Stats widgets row -->
+      <section class="stat-widget-board">
+        <div class="stat-widget-card">
+          <div class="stat-widget-info">
+            <h4 id="stat-count-news">0</h4>
+            <p>News Articles</p>
+          </div>
+          <div class="stat-widget-icon"><i class="far fa-newspaper"></i></div>
+        </div>
+        <div class="stat-widget-card">
+          <div class="stat-widget-info">
+            <h4 id="stat-count-projects">0</h4>
+            <p>Active Works</p>
+          </div>
+          <div class="stat-widget-icon"><i class="fas fa-tasks"></i></div>
+        </div>
+        <div class="stat-widget-card">
+          <div class="stat-widget-info">
+            <h4 id="stat-count-photos">0</h4>
+            <p>Gallery Photos</p>
+          </div>
+          <div class="stat-widget-icon"><i class="far fa-image"></i></div>
+        </div>
+        <div class="stat-widget-card">
+          <div class="stat-widget-info">
+            <h4 id="stat-count-grievances">0</h4>
+            <p>Pending Petitions</p>
+          </div>
+          <div class="stat-widget-icon"><i class="far fa-envelope-open"></i></div>
+        </div>
+      </section>
+
+      <!-- Alert Notification Banner placeholder -->
+      <div id="admin-alert" class="custom-alert" style="display: none;"></div>
+
+      <!-- ---------------- PANELS ---------------- -->
+
+      <!-- PANEL 1: CONFIGURATION SETTINGS -->
+      <section class="admin-panel active" id="settings-panel">
+        <div class="panel-header">
+          <h3>Configuration Settings</h3>
+          <i class="fas fa-sliders-h" style="color: var(--primary);"></i>
+        </div>
+        
+        <form id="config-form">
+          <div class="admin-grid-layout-full">
+            <div class="card-block">
+              <div class="card-block-title">Branding & Titles (English / தமிழ்)</div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">TVK Party Name (English)</label>
+                  <input type="text" class="form-input" id="cfg-site-title-en" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">TVK Party Name (Tamil)</label>
+                  <input type="text" class="form-input" id="cfg-site-title-ta" required>
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">MLA Profile Name (English)</label>
+                  <input type="text" class="form-input" id="cfg-mla-name-en" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">MLA Profile Name (Tamil)</label>
+                  <input type="text" class="form-input" id="cfg-mla-name-ta" required>
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">MLA Office Title Subtitle (English)</label>
+                  <input type="text" class="form-input" id="cfg-mla-title-en" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">MLA Office Title Subtitle (Tamil)</label>
+                  <input type="text" class="form-input" id="cfg-mla-title-ta" required>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card-block">
+              <div class="card-block-title">MLA Profile Portrait Upload</div>
+              
+              <div class="form-row" style="align-items: center;">
+                <div class="form-group">
+                  <label class="form-label">Choose Real Photo from Computer</label>
+                  <div class="form-file-uploader">
+                    <i class="far fa-image"></i>
+                    <span id="cfg-mla-file-label">Select portrait photo</span>
+                    <input type="file" id="cfg-mla-file" accept="image/*">
+                  </div>
+                </div>
+                <div class="form-group" style="display:flex; flex-direction:column; align-items:center;">
+                  <label class="form-label">Active Image Preview</label>
+                  <img src="" id="cfg-mla-img-preview" style="width: 90px; height: 110px; border-radius: 8px; object-fit: cover; border: 2px solid var(--primary); display:none;">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">MLA Portrait Image URL (Alternative to file upload)</label>
+                <input type="text" class="form-input" id="cfg-mla-img">
+              </div>
+            </div>
+
+            <div class="card-block">
+              <div class="card-block-title">Breaking News Marquee Announcements</div>
+              <div class="form-group">
+                <label class="form-label">Scrolling Marquee Text (English)</label>
+                <input type="text" class="form-input" id="cfg-marquee-en" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Scrolling Marquee Text (Tamil)</label>
+                <input type="text" class="form-input" id="cfg-marquee-ta" required>
+              </div>
+            </div>
+
+            <div class="card-block">
+              <div class="card-block-title">Official Office & Social Media Contact Details</div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Contact Phone Helpline</label>
+                  <input type="text" class="form-input" id="cfg-phone" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Official Email Address</label>
+                  <input type="email" class="form-input" id="cfg-email" required>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Physical Office Address (English)</label>
+                <input type="text" class="form-input" id="cfg-address-en" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Physical Office Address (Tamil)</label>
+                <input type="text" class="form-input" id="cfg-address-ta" required>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Facebook Profile Link</label>
+                  <input type="url" class="form-input" id="cfg-fb">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Twitter/X Profile Link</label>
+                  <input type="url" class="form-input" id="cfg-tw">
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Instagram Profile Link</label>
+                  <input type="url" class="form-input" id="cfg-ig">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">YouTube channel Link</label>
+                  <input type="url" class="form-input" id="cfg-yt">
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <button type="submit" class="btn btn-primary btn-full" style="max-width: 300px;"><i class="fas fa-save"></i> Save Settings</button>
+              <button type="button" class="btn btn-danger" id="reset-db-btn"><i class="fas fa-history"></i> Reset Seed Database</button>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- PANEL 2: MANAGE NEWS ARTICLES -->
+      <section class="admin-panel" id="news-panel">
+        <div class="panel-header">
+          <h3>Manage News & Press Articles</h3>
+          <i class="far fa-newspaper" style="color: var(--primary);"></i>
+        </div>
+        
+        <div class="admin-grid-layout">
+          <!-- Form to create/edit -->
+          <div class="card-block">
+            <div class="card-block-title" id="news-form-title">Create News Article</div>
+            
+            <form id="news-form">
+              <div class="form-group">
+                <label class="form-label">Article Title (English)</label>
+                <input type="text" class="form-input" id="news-title-en" required placeholder="Enter English heading">
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Article Title (Tamil)</label>
+                <input type="text" class="form-input" id="news-title-ta" required placeholder="Enter Tamil heading">
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Category</label>
+                  <select class="form-input" id="news-category" required>
+                    <option value="Constituency Work">Constituency Work</option>
+                    <option value="Welfare Activities">Welfare Activities</option>
+                    <option value="Press Releases">Press Releases</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Publish Date</label>
+                  <input type="date" class="form-input" id="news-date">
+                </div>
+              </div>
+              
+              <div class="form-checkbox-group">
+                <input type="checkbox" id="news-featured">
+                <label class="form-label" style="margin-bottom:0; display:inline;" for="news-featured">Set as Primary Featured News Story</label>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Upload Real Event Photograph</label>
+                <div class="form-file-uploader">
+                  <i class="far fa-image"></i>
+                  <span>Drag & Drop or click to upload local photo</span>
+                  <input type="file" id="news-file" accept="image/*">
+                </div>
+                <div class="image-preview-box" id="news-img-preview-box">
+                  <img src="" id="news-img-preview" alt="Upload preview">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Photograph Image Web URL (Alternative to file upload)</label>
+                <input type="text" class="form-input" id="news-img-url" placeholder="https://unsplash.com/...">
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">News Content Narrative (English)</label>
+                <textarea class="form-input" id="news-content-en" rows="5" required placeholder="Write detailed story..."></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">News Content Narrative (Tamil)</label>
+                <textarea class="form-input" id="news-content-ta" rows="5" required placeholder="தமிழில் விரிவான செய்தியை எழுதவும்..."></textarea>
+              </div>
+              
+              <div style="display:flex; gap:1rem;">
+                <button type="submit" class="btn btn-primary btn-full"><i class="fas fa-paper-plane"></i> Save Article</button>
+                <button type="button" class="btn btn-secondary" id="cancel-news-edit" style="display:none;">Cancel</button>
+              </div>
+            </form>
+          </div>
+          
+          <!-- Tabular list of active news -->
+          <div class="card-block">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.75rem;">
+              <div class="card-block-title" style="margin-bottom: 0;">Active News Listings</div>
+              <button type="button" class="btn btn-primary" id="auto-fetch-news-btn" style="background-color: #27AE60; border-color: #27AE60; font-size: 0.85rem; padding: 0.5rem 1rem; border-radius: 4px; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                <i class="fas fa-sync-alt"></i> Auto-Fetch Latest News
+              </button>
+            </div>
+            <div class="table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Photo</th>
+                    <th>Heading (Tamil)</th>
+                    <th>Category</th>
+                    <th>Date / Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="news-table-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANEL 3: MANAGE CONSTITUENCY PROJECTS -->
+      <section class="admin-panel" id="projects-panel">
+        <div class="panel-header">
+          <h3>Manage Development Projects</h3>
+          <i class="fas fa-tasks" style="color: var(--primary);"></i>
+        </div>
+        
+        <div class="admin-grid-layout">
+          <!-- Form to add project -->
+          <div class="card-block">
+            <div class="card-block-title" id="proj-form-title">Register Constituency Project</div>
+            
+            <form id="project-form">
+              <div class="form-group">
+                <label class="form-label">Project Name (English)</label>
+                <input type="text" class="form-input" id="proj-title-en" required placeholder="e.g. East Tambaram Access Road Restoration">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Project Name (Tamil)</label>
+                <input type="text" class="form-input" id="proj-title-ta" required placeholder="e.g. கிழக்கு தாம்பரம் அணுகுசாலை சீரமைப்பு">
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Current Work Status</label>
+                  <select class="form-input" id="proj-status" required>
+                    <option value="planned">Planned (திட்டமிடப்பட்டது)</option>
+                    <option value="ongoing">In Progress (தொடர்கிறது)</option>
+                    <option value="completed">Completed (நிறைவடைந்தது)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Work Location (English)</label>
+                  <input type="text" class="form-input" id="proj-loc-en" required placeholder="e.g. Selaiyur Ward 14">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Work Location (Tamil)</label>
+                <input type="text" class="form-input" id="proj-loc-ta" required placeholder="e.g. சேலையூர் வார்டு 14">
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Public Impact Scope (English)</label>
+                  <input type="text" class="form-input" id="proj-impact-en" required placeholder="e.g. Benefits 12,000 residents">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Public Impact Scope (Tamil)</label>
+                  <input type="text" class="form-input" id="proj-impact-ta" required placeholder="e.g. 12,000 மக்கள் பயன்பெறுகின்றனர்">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Description & Targets (English)</label>
+                <textarea class="form-input" id="proj-desc-en" rows="3" required placeholder="Enter scope details..."></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Description & Targets (Tamil)</label>
+                <textarea class="form-input" id="proj-desc-ta" rows="3" required placeholder="திட்ட வரைமுறைகளை விவரிக்கவும்..."></textarea>
+              </div>
+              
+              <div style="display:flex; gap:1rem;">
+                <button type="submit" class="btn btn-primary btn-full"><i class="fas fa-plus"></i> Save Project</button>
+                <button type="button" class="btn btn-secondary" id="cancel-proj-edit" style="display:none;">Cancel</button>
+              </div>
+            </form>
+          </div>
+          
+          <!-- List of projects -->
+          <div class="card-block">
+            <div class="card-block-title">Registered Projects Checklist</div>
+            <div class="table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Project Name</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Impact Scope</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="projects-table-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANEL 4: GALLERY & VIDEOS -->
+      <section class="admin-panel" id="gallery-panel">
+        <div class="panel-header">
+          <h3>Manage Visual Photo Gallery & Videos</h3>
+          <i class="far fa-image" style="color: var(--primary);"></i>
+        </div>
+        
+        <div class="admin-grid-layout">
+          <!-- Left Forms -->
+          <div>
+            <!-- Photo add form -->
+            <div class="card-block">
+              <div class="card-block-title">Upload Photo to Gallery</div>
+              <form id="gallery-form">
+                <div class="form-group">
+                  <label class="form-label">Choose Event Photograph</label>
+                  <div class="form-file-uploader">
+                    <i class="far fa-image"></i>
+                    <span id="gallery-file-label">Select photo from local device</span>
+                    <input type="file" id="gallery-file" accept="image/*">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Photograph Web URL (Alternative to file upload)</label>
+                  <input type="text" class="form-input" id="gal-img-url" placeholder="https://unsplash.com/...">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Photo Caption (English)</label>
+                  <input type="text" class="form-input" id="gal-caption-en" required placeholder="Explain the photograph context">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Photo Caption (Tamil)</label>
+                  <input type="text" class="form-input" id="gal-caption-ta" required placeholder="புகைப்பட விளக்கத்தை எழுதவும்">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full"><i class="fas fa-upload"></i> Upload to Gallery</button>
+              </form>
+            </div>
+            
+            <!-- Video add form -->
+            <div class="card-block">
+              <div class="card-block-title">Add YouTube Video Registry</div>
+              <form id="video-form">
+                <div class="form-group">
+                  <label class="form-label">Video Title (English)</label>
+                  <input type="text" class="form-input" id="vid-title-en" required placeholder="e.g. Swearing-in Ceremony Live">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Video Title (Tamil)</label>
+                  <input type="text" class="form-input" id="vid-title-ta" required placeholder="e.g. அமைச்சர் பதவி ஏற்பு நேரடி ஒளிபரப்பு">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">YouTube Video URL</label>
+                  <input type="url" class="form-input" id="vid-url" required placeholder="e.g. https://www.youtube.com/watch?v=...">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Custom Video Thumbnail URL (Optional)</label>
+                  <input type="text" class="form-input" id="vid-thumb-url" placeholder="e.g. https://unsplash.com/...">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full"><i class="fas fa-plus"></i> Save Video Link</button>
+              </form>
+            </div>
+          </div>
+          
+          <!-- Right management lists -->
+          <div>
+            <div class="card-block">
+              <div class="card-block-title">Gallery Photo Catalog</div>
+              <div class="table-container">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Image</th>
+                      <th>Caption (Tamil)</th>
+                      <th>Upload Date</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="gallery-table-body">
+                    <!-- Rendered dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div class="card-block">
+              <div class="card-block-title">Video Playlist Catalog</div>
+              <div class="table-container">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Thumbnail</th>
+                      <th>Video Title (English)</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="videos-table-body">
+                    <!-- Rendered dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANEL 5: CITIZENS GRIEVANCES INBOX -->
+      <section class="admin-panel" id="grievances-panel">
+        <div class="panel-header">
+          <h3>Constituency Petitions & Grievances Inbox</h3>
+          <i class="far fa-envelope-open" style="color: var(--primary);"></i>
+        </div>
+        
+        <div class="admin-grid-layout-full">
+          <div class="card-block">
+            <div class="card-block-title">Citizens Grievances Logbook</div>
+            <div class="table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Date / ID</th>
+                    <th>Petitioner Details</th>
+                    <th>Ward / Category</th>
+                    <th>Issue Description</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="grievances-table-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Seed data controller script -->
+  <script src="js/db.js"></script>
+  <!-- Admin panel operations controller script -->
+  <script src="js/admin.js"></script>
+</body>
+</html>

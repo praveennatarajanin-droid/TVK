@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thalapathy Vijay CM | Tamilaga Vettri Kazhagam Portal</title>
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Core Design System stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- 1. TOP BAR & TICKER -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-bar-left">
+        <span class="live-time" id="live-time-node">Loading local time...</span>
+      </div>
+      <div class="top-bar-right">
+        <div class="social-links">
+          <a id="social-fb" href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a id="social-tw" href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a id="social-ig" href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a id="social-yt" href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        <button class="lang-toggle" id="lang-toggle-btn">English</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breaking News Marquee Ticker -->
+  <div class="ticker-wrap">
+    <div class="ticker-title" data-i18n="breaking_news">முக்கிய செய்திகள்</div>
+    <div class="ticker-marquee">
+      <span id="marquee-text">தவெக தலைவர் தளபதி விஜய் தமிழக முதலமைச்சராக பொறுப்பேற்பு!</span>
+    </div>
+  </div>
+
+  <!-- 2. PRIMARY MAIN BRANDING HEADER -->
+  <header class="main-header">
+    <div class="container header-content">
+      <div class="brand-area">
+        <!-- Gorgeous Real TVK Party Logo Image -->
+        <img class="tvk-logo" src="images/tvklogo.png" alt="Tamilaga Vettri Kazhagam Logo">
+        <div class="brand-text">
+          <h1 id="brand-title">தமிழக வெற்றி கழகம் (தவெக)</h1>
+          <p id="brand-sub">மாநிலத் தலைமை இணையதளம் & முதலமைச்சர் அலுவலகம்</p>
+        </div>
+      </div>
+      
+      <div class="header-right">
+        <!-- TVK Principles Tag -->
+        <div style="background-color: #FAF6ED; border: 1px solid var(--secondary); padding: 0.5rem 1rem; border-radius: 8px; display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fas fa-balance-scale" style="color: var(--secondary-dark); font-size: 1.25rem;"></i>
+          <div>
+            <h5 style="font-size: 0.8rem; font-weight: 800; color: var(--primary); text-transform: uppercase;" data-i18n="about_minister_label">கட்சியின் கொள்கை</h5>
+            <p style="font-size: 0.7rem; font-weight: 700; color: var(--text-dark);" id="symbol-txt">மதச்சார்பற்ற சமூக நீதி</p>
+          </div>
+        </div>
+        <!-- MLA Avatar Profile Badge -->
+        <div class="mla-badge">
+          <img class="mla-avatar" id="header-avatar" src="images/tvklogo.png" alt="TVK Logo" referrerpolicy="no-referrer">
+          <div class="mla-info">
+            <h4 id="header-mla-name">தளபதி விஜய்</h4>
+            <p id="header-mla-title">தமிழக முதலமைச்சர்</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Sticky Menu -->
+  <nav class="navbar">
+    <div class="container nav-links">
+      <a href="#home" class="active" data-i18n="nav_home">முகப்பு</a>
+      <a href="#about" data-i18n="nav_about">தலைவர் பற்றி</a>
+      <a href="#news" data-i18n="nav_news">செய்திகள்</a>
+      <a href="#projects" data-i18n="nav_projects">மக்கள் நலத்திட்டங்கள்</a>
+      <a href="#grievance" data-i18n="nav_grievance">முதல்வர் மனு பிரிவு</a>
+      <a href="admin.html" class="admin-nav-btn" target="_blank">
+        <i class="fas fa-lock"></i> <span data-i18n="nav_admin">நிர்வாக பக்கம்</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- 3. HERO GRID SECTION (FEATURED NEWS + SIDEBAR) -->
+  <section class="hero-news" id="home">
+    <div class="container hero-grid">
+      <!-- Big Left Featured Card -->
+      <div class="featured-story" id="featured-story-card">
+        <div class="featured-img-wrap">
+          <img class="featured-img" id="featured-img" src="images/lake.jpg" alt="Featured story" referrerpolicy="no-referrer">
+        </div>
+        <div class="featured-overlay">
+          <span class="badge badge-secondary" data-i18n="featured_tag">சிறப்பு செய்தி</span>
+          <h2 class="featured-title" id="featured-title">Loading featured news...</h2>
+          <p class="featured-summary" id="featured-desc">Please wait while the website data synchronizes.</p>
+          <div class="featured-meta">
+            <span id="featured-date"><i class="far fa-calendar-alt"></i> Loading date...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Small Vertical News Sidebar -->
+      <div class="sidebar-container">
+        <!-- Social Follow Widget Grid -->
+        <div class="social-follow-grid">
+          <a class="follow-btn follow-facebook" id="follow-fb" href="#" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+          <a class="follow-btn follow-twitter" id="follow-tw" href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+          <a class="follow-btn follow-instagram" id="follow-ig" href="#" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+          <a class="follow-btn follow-youtube" id="follow-yt" href="#" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+        </div>
+        
+        <div class="sidebar-news" style="max-height: 380px;">
+          <div class="sidebar-title">
+            <span data-i18n="sidebar_title">சமீபத்திய செய்திகள்</span>
+            <i class="fas fa-bolt" style="color: var(--secondary);"></i>
+          </div>
+          <div class="sidebar-news-list" id="sidebar-news-list">
+            <!-- Populated dynamically via app.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. DYNAMIC CAMPAIGN STATS BOARD (ACCENT BANNER) -->
+  <section class="stats-banner">
+    <div class="container stats-grid">
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-users"></i></div>
+        <div class="stat-number" id="stat-votes">0</div>
+        <div class="stat-label" data-i18n="stat_votes_label">பெற்ற வாக்குகள்</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+        <div class="stat-number" id="stat-margin">0</div>
+        <div class="stat-label" data-i18n="stat_margin_label">வெற்றி வாக்கு வேறுபாடு</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-tasks"></i></div>
+        <div class="stat-number" id="stat-projects">0</div>
+        <div class="stat-label" data-i18n="stat_projects_label">தொகுதி வளர்ச்சி திட்டங்கள்</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-hand-holding-heart"></i></div>
+        <div class="stat-number" id="stat-grievance">0</div>
+        <div class="stat-label" data-i18n="stat_grievance_label">தீர்க்கப்பட்ட மனுக்கள்</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. SECTION 1: PRESS RELEASES (அறிக்கைகள்) -->
+  <section class="press-releases-section section-padding" id="press-releases" style="background-color: #FAFAFA;">
+    <div class="container">
+      <div class="category-ribbon">
+        <h3 data-i18n="filter_press">அறிக்கைகள்</h3>
+        <a href="#news" class="see-more-link"><span data-i18n="read_more">மேலும் காண்க</span> <i class="fas fa-chevron-right"></i></a>
+      </div>
+      
+      <div class="press-releases-layout">
+        <!-- Large Left Card -->
+        <div class="featured-story" id="press-featured-card" style="height: 520px; box-shadow: var(--shadow-sm);">
+          <div class="featured-img-wrap">
+            <img class="featured-img" id="press-featured-img" src="" alt="Press release" referrerpolicy="no-referrer">
+          </div>
+          <div class="featured-overlay">
+            <h2 class="featured-title" id="press-featured-title" style="font-size: 1.6rem;">Loading...</h2>
+            <p class="featured-summary" id="press-featured-desc">Please wait.</p>
+            <div class="featured-meta">
+              <span id="press-featured-date"><i class="far fa-calendar-alt"></i> Loading...</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Stacked List -->
+        <div class="press-releases-sidebar" id="press-sidebar-list">
+          <!-- Populated dynamically via app.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ad Spacer Banner -->
+  <div class="container">
+    <div class="ad-banner-wrap">
+      விளம்பரம் / Advertisement
+    </div>
+  </div>
+
+  <!-- 6. SECTION 2: CONSTITUENCY NEWS (தொகுதி செய்திகள்) -->
+  <section class="constituency-news-section section-padding" id="news" style="background-color: #FFFFFF;">
+    <div class="container">
+      <div class="category-ribbon">
+        <h3 data-i18n="filter_constituency">தொகுதி செய்திகள்</h3>
+        <div class="search-box-wrap" style="max-width: 250px;">
+          <input type="text" class="search-input" id="news-search" placeholder="செய்திகளை தேடுக..." data-i18n="search_placeholder" style="padding: 0.35rem 1rem 0.35rem 2.2rem;">
+          <i class="fas fa-search search-icon" style="font-size: 0.8rem;"></i>
+        </div>
+      </div>
+      
+      <!-- News Grid -->
+      <div class="news-grid" id="news-grid">
+        <!-- Populated dynamically via app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. MLA PROFILE BIOGRAPHY -->
+  <section class="mla-profile-section section-padding" id="about" style="background-color: #FAFBFB; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container profile-layout">
+      <div class="profile-media">
+        <div class="profile-img-backdrop"></div>
+        <div class="profile-img-frame">
+          <img class="profile-image" id="profile-mla-img" src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Vijay_at_the_Nadigar_Sangam_Protest.jpg" alt="Thalapathy Vijay Profile" referrerpolicy="no-referrer">
+        </div>
+      </div>
+      <div class="profile-content">
+        <h3 data-i18n="about_badge">தமிழகத்தின் முதன்மை மக்கள் பிரதிநிதி</h3>
+        <h2 data-i18n="mla_name_ta">தளபதி விஜய்</h2>
+        <div class="profile-subtitle" data-i18n="mla_title_ta">
+          தமிழக வெற்றி கழக நிறுவனத் தலைவர் & மாண்புமிகு தமிழக முதலமைச்சர்
+        </div>
+        <div class="profile-bio">
+          <p>தமிழக வெற்றி கழகத்தின் நிறுவனத் தலைவரும் மாண்புமிகு தமிழக முதலமைச்சருமான <strong>தளபதி விஜய்</strong> அவர்கள், தமிழக மக்களின் பேராதரவோடு 2026 சட்டமன்றத் தேர்தலில் மாபெரும் வெற்றி பெற்று தமிழகத்தின் முதலமைச்சராகப் பொறுப்பேற்றுள்ளார்.</p>
+          <p>மதச்சார்பற்ற சமூக நீதிக் கொள்கைகளை முன்னிறுத்தி, ஊழலற்ற, வெளிப்படையான மற்றும் நேர்மையான நிர்வாகத்தை தமிழக மக்களுக்கு வழங்குவதே தவெக அரசின் முக்கிய இலக்காகும். கல்வி, சுகாதாரம், மற்றும் இளைஞர்களுக்கான ஸ்மார்ட் வேலைவாய்ப்புத் திட்டங்களில் தவெக அரசு தனி கவனம் செலுத்தி வருகிறது.</p>
+        </div>
+        <div class="key-highlights-grid">
+          <div class="highlight-card">
+            <div class="highlight-icon"><i class="fas fa-landmark"></i></div>
+            <div class="highlight-text">
+              <h5 data-i18n="highlight_1_title">முதலமைச்சர் அலுவலகம் (CMO)</h5>
+              <p data-i18n="highlight_1_desc">அரசு நிர்வாக சீர்திருத்தங்கள், நேரடி மனு கண்காணிப்பு மற்றும் மக்கள் சேவைகளை வழிநடத்துதல்.</p>
+            </div>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon"><i class="fas fa-hands-helping"></i></div>
+            <div class="highlight-text">
+              <h5 data-i18n="highlight_2_title">மாண்புமிகு முதல்வர் விஜய்</h5>
+              <p data-i18n="highlight_2_desc">8 கோடி தமிழக மக்களின் முன்னேற்றத்திற்கும் சமத்துவத்திற்குமான நேர்மைப் பாதை.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. VIDEO PLAYLIST SECTION -->
+  <section class="video-section" id="videos">
+    <div class="container">
+      <div class="category-ribbon" style="background-color: var(--primary-light);">
+        <h3 data-i18n="videos_title">காணொளிகள் & பேட்டிகள்</h3>
+      </div>
+      <div class="video-layout">
+        <!-- Main video iframe frame -->
+        <div class="main-video-player">
+          <iframe id="video-player-frame" src="" allowfullscreen></iframe>
+        </div>
+        <!-- Right selection playlist sidebar -->
+        <div class="video-list-sidebar" id="video-list-sidebar">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. PHOTO GALLERY (புகைப்படங்கள்) -->
+  <section class="media-gallery section-padding" id="gallery" style="background-color: #FFFFFF; border-top: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="category-ribbon">
+        <h3 data-i18n="nav_gallery">புகைப்பட கேலரி</h3>
+      </div>
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- Rendered dynamically via app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. TAMBARAM ACTIVE PROJECTS BOARD -->
+  <section class="projects-board section-padding" id="projects" style="background-color: #FAFBFB; border-top: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="category-ribbon" style="background-color: var(--primary-dark);">
+        <h3 data-i18n="projects_title">தாம்பரம் வளர்ச்சி திட்டங்கள்</h3>
+      </div>
+      <p style="color: var(--text-muted); margin-bottom: 2.5rem; font-weight: 500;" data-i18n="projects_subtitle">தொகுதியில் மேற்கொள்ளப்பட்டு வரும் முக்கிய உட்கட்டமைப்பு திட்டங்களின் விபரம்:</p>
+      
+      <div class="projects-board-grid" id="projects-grid">
+        <!-- Rendered dynamically via app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. CITIZEN PETITION / GRIEVANCE PORTAL -->
+  <section class="grievance-section section-padding" id="grievance">
+    <div class="container grievance-layout">
+      <div class="grievance-intro">
+        <h2 data-i18n="grievance_title">மக்களை தேடி சட்டமன்ற உறுப்பினர்</h2>
+        <p data-i18n="grievance_subtitle">தாம்பரம் வார்டு மக்கள் தங்கள் குறைகளை நேரடியாக அமைச்சரின் மேசைக்கு அனுப்பி வைக்கலாம்.</p>
+        
+        <div class="grievance-benefits">
+          <div class="benefit-item">
+            <span class="benefit-bullet">1</span>
+            <span class="benefit-text" data-i18n="griev_step_1">மனுவினை ஆன்லைனில் எளிதாகப் பதிவு செய்தல்</span>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-bullet">2</span>
+            <span class="benefit-text" data-i18n="griev_step_2">உடனடி மனு கண்காணிப்பு எண் பெறுதல்</span>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-bullet">3</span>
+            <span class="benefit-text" data-i18n="griev_step_3">வார்டு பொறியாளர்களின் நேரடி ஆய்வு</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Submission Form card -->
+      <div class="grievance-form-card">
+        <!-- Alert placeholder -->
+        <div id="grievance-alert" class="custom-alert" style="display:none;"></div>
+        
+        <form id="grievance-form">
+          <div class="form-group">
+            <label class="form-label" data-i18n="form_name">பெயர்</label>
+            <input type="text" class="form-input" id="grievance-name" required placeholder="பெயரை உள்ளிடவும்">
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" data-i18n="form_phone">தொடர்பு எண்</label>
+              <input type="tel" class="form-input" id="grievance-phone" required placeholder="மொபைல் எண்">
+            </div>
+            <div class="form-group">
+              <label class="form-label" data-i18n="form_email">மின்னஞ்சல்</label>
+              <input type="email" class="form-input" id="grievance-email" placeholder="மின்னஞ்சல் முகவரி">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" data-i18n="form_ward">வார்டு எண்</label>
+              <select class="form-input" id="grievance-ward" required>
+                <option value="" disabled selected>வார்டை தேர்வு செய்க</option>
+                <option value="Ward 12 (East Tambaram)">வார்டு 12 (கிழக்கு தாம்பரம்)</option>
+                <option value="Ward 14 (Selaiyur)">வார்டு 14 (சேலையூர்)</option>
+                <option value="Ward 18 (Chromepet)">வார்டு 18 (குரோம்பேட்டை)</option>
+                <option value="Ward 20 (Mudichur)">வார்டு 20 (முடிச்சூர்)</option>
+                <option value="Ward 22 (Tambaram West)">வார்டு 22 (மேற்கு தாம்பரம்)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" data-i18n="form_type">பிரச்சனையின் வகை</label>
+              <select class="form-input" id="grievance-type" required>
+                <option value="" disabled selected>வகை</option>
+                <option value="Drinking Water">குடிநீர் தட்டுப்பாடு</option>
+                <option value="Roads & Traffic">சாலை சீரமைப்பு</option>
+                <option value="Sewage & Drainage">பாதாள சாக்கடை / கழிவுநீர்</option>
+                <option value="Street Lighting">தெருவிளக்கு பழுது</option>
+                <option value="Garbage Clearance">குப்பை அகற்றுதல்</option>
+                <option value="Others">இதர குறைகள்</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" data-i18n="form_desc">மனுவின் விரிவான விபரம்</label>
+            <textarea class="form-input" id="grievance-desc" rows="4" required placeholder="குறைகளை விரிவாக விவரிக்கவும்..."></textarea>
+          </div>
+          
+          <button type="submit" class="btn-submit" id="grievance-submit-btn">
+            <i class="fas fa-paper-plane"></i> <span data-i18n="form_submit">மனுவைச் சமர்ப்பி</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FOOTER SECTION -->
+  <footer class="main-footer">
+    <div class="container footer-grid">
+      <!-- Col 1: About TVK Tambaram -->
+      <div class="footer-col">
+        <div class="footer-about-logo">
+          <!-- Mini Real TVK Party Logo Image -->
+          <img class="tvk-logo" src="images/tvklogo.png" alt="TVK Logo" style="width: 45px; height: 45px;">
+          <h3 data-i18n="party_name_ta">தமிழக வெற்றி கழகம்</h3>
+        </div>
+        <p class="footer-about-text" id="footer-desc">
+          தாம்பரம் தொகுதி சட்டமன்ற உறுப்பினரும் மாண்புமிகு மனிதவள மேலாண்மைத் துறை அமைச்சருமான த. சரத்குமார் அவர்களின் அதிகாரப்பூர்வ மக்கள் தொடர்பு இணையதளம்.
+        </p>
+      </div>
+      
+      <!-- Col 2: Navigation Links -->
+      <div class="footer-col">
+        <h4 data-i18n="footer_links_title">இணைப்புகள்</h4>
+        <ul class="footer-links">
+          <li><a href="#home"><i class="fas fa-chevron-right" style="font-size: 0.65rem;"></i> <span data-i18n="nav_home">முகப்பு</span></a></li>
+          <li><a href="#about"><i class="fas fa-chevron-right" style="font-size: 0.65rem;"></i> <span data-i18n="nav_about">அமைச்சர் பற்றி</span></a></li>
+          <li><a href="#news"><i class="fas fa-chevron-right" style="font-size: 0.65rem;"></i> <span data-i18n="nav_news">செய்திகள்</span></a></li>
+          <li><a href="#projects"><i class="fas fa-chevron-right" style="font-size: 0.65rem;"></i> <span data-i18n="nav_projects">தாம்பரம் திட்டங்கள்</span></a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 3: Contacts -->
+      <div class="footer-col">
+        <h4 data-i18n="footer_contact_title">அலுவலக முகவரி</h4>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="footer-contact-text" id="footer-address">No. 45, Velachery Main Road, East Tambaram, Chennai - 600059</div>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon"><i class="fas fa-phone-alt"></i></div>
+          <div class="footer-contact-text">
+            <a id="phone-link" href="tel:+919444512345">+91 94445 12345</a>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon"><i class="fas fa-envelope"></i></div>
+          <div class="footer-contact-text">
+            <a id="email-link" href="mailto:tambarammla.tvk@tn.gov.in">tambarammla.tvk@tn.gov.in</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Col 4: Newsletter -->
+      <div class="footer-col">
+        <h4 data-i18n="footer_newsletter_title">இணைந்திருங்கள்</h4>
+        <div class="newsletter-box">
+          <p data-i18n="footer_newsletter_desc">தாம்பரம் தொகுதி வளர்ச்சிப் பணிகள் குறித்த வாராந்திர விபரங்களை மின்னஞ்சலில் பெறுக.</p>
+          <form class="newsletter-form" id="newsletter-form">
+            <input type="email" class="newsletter-input" id="newsletter-input" required placeholder="மின்னஞ்சல் முகவரி" data-i18n="form_email">
+            <button type="submit" class="newsletter-btn" id="newsletter-btn" data-i18n="footer_newsletter_btn">பதிவு செய்</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer Bottom rights -->
+    <div class="container footer-bottom">
+      <div id="footer-copyright">© 2026 அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை. தமிழக வெற்றி கழகம் தாம்பரம் தொகுதி.</div>
+      <div class="footer-bottom-links">
+        <a href="#grievance">Grievance Helpline</a>
+        <a href="admin.html" target="_blank">Admin Control</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 12. IMMERSIVE MODAL OVERLAY (NEWS READER & LIGHTBOX PLAYER) -->
+  <div class="modal" id="info-modal">
+    <div class="modal-content">
+      <span class="modal-close" id="modal-close-btn">&times;</span>
+      <div class="modal-body" id="modal-body-content">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Unified local client data-persistence layer -->
+  <script src="js/db.js"></script>
+  <!-- Main portal rendering & translation scripts -->
+  <script src="js/app.js"></script>
+</body>
+</html>
